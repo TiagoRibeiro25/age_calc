@@ -103,8 +103,9 @@ def main_calc():
 
             theme = theme_selected.get()
             save_log = save_to_log.get()
-            window.destroy()
-            os.system('index.py')
+
+            restart_info = Label(settings_painel, text = 'Restart the app to apply settings', fg=letter_color, font = ('Arial', 10), background=background_color)
+            restart_info.place(x = 140, y = 204)
 
         btn_apply_theme = Button(settings_painel, text = 'Apply Settings', font = ('Arial', 10), fg = letter_color, relief='raised', background = background_color, command=apply_settings)
         btn_apply_theme.place(x = 10, y = 200)
