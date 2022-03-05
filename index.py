@@ -34,7 +34,7 @@ window = Tk()
 window.geometry('400x650')
 window.resizable(0,0)
 window.iconbitmap("calc.ico")
-window.title('Program')
+window.title('Age Calculator')
 window.configure(background=window_background_color)
 
 def main_calc():
