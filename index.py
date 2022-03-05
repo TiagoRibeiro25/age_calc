@@ -62,7 +62,7 @@ def main_calc():
         btn_info.configure(state=NORMAL)
 
         global settings_painel
-        settings_painel = PanedWindow(window, width = 380, height= 630, background=background_color)
+        settings_painel = PanedWindow(window, width = 380, height= 580, background=background_color)
         settings_painel.place(x = 10, y = 60)
 
         lbl_change_theme = Label(settings_painel, text = 'Change Theme', fg=letter_color, font = ('Arial', 15), background=background_color)
