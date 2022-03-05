@@ -42,7 +42,6 @@ def main_calc():
     top_painel = PanedWindow(window, width = 380, height= 29, background=box_color)
     top_painel.place(x = 10, y = 10)
 
-
     #clock
     def clock():
         tack = strftime("%H:%M:%S")
@@ -88,7 +87,6 @@ def main_calc():
         save_to_log.set(save_log)  
         #save_to_log.get() - get the value
 
-
         def apply_settings():
             global theme
             global save_log
@@ -110,9 +108,6 @@ def main_calc():
 
         btn_apply_theme = Button(settings_painel, text = 'Apply Settings', font = ('Arial', 10), fg = letter_color, relief='raised', background = background_color, command=apply_settings)
         btn_apply_theme.place(x = 10, y = 200)
-
-
-
 
 
     def calc():
@@ -362,10 +357,58 @@ def main_calc():
         footer_label = Label(main_painel, text = 'App in development (Beta)                                  Open Source', fg=letter_color, font = ('Arial', 10), background=background_color)
         footer_label.place(x = 5, y = 555)
 
+    def web_links():
+        btn_main.configure(state=DISABLED)
+        btn_settings.configure(state=DISABLED)
+        btn_info.configure(state=DISABLED)
+        btn_links.configure(command=web_links_delete)
+
+        global links_painel
+        links_painel = PanedWindow(window, width = 130, height= 191, background=box_color)
+        links_painel.place(x = 10, y = 39)
+
+        def google():
+            webbrowser.open_new_tab("https://www.google.com")
+        def youtube():
+            webbrowser.open_new_tab("https://www.youtube.com")
+        def github():
+            webbrowser.open_new_tab("https://www.github.com/")
+        def wiki():
+            webbrowser.open_new_tab("https://en.wikipedia.org/wiki/Main_Page")
+        def twitch():
+            webbrowser.open_new_tab("https://www.twitch.tv/")
+        def reddit():
+            webbrowser.open_new_tab("https://www.reddit.com/")
+        def steam():
+            webbrowser.open_new_tab("https://store.steampowered.com/")
+
+        btn_google = Button(links_painel, text = 'Google', font = ('Arial', 10), fg = letter_color_box, relief='raised', background = box_color, width=15, height=1, command=google)
+        btn_youtube = Button(links_painel, text = 'Youtube', font = ('Arial', 10), fg = letter_color_box, relief='raised', background = box_color, width=15, height=1, command=youtube)
+        btn_github = Button(links_painel, text = 'Git Hub', font = ('Arial', 10), fg = letter_color_box, relief='raised', background = box_color, width=15, height=1, command=github)
+        btn_wiki = Button(links_painel, text = 'Wikipedia', font = ('Arial', 10), fg = letter_color_box, relief='raised', background = box_color, width=15, height=1, command=wiki)
+        btn_twitch = Button(links_painel, text = 'Twitch', font = ('Arial', 10), fg = letter_color_box, relief='raised', background = box_color, width=15, height=1, command=twitch)
+        btn_reddit = Button(links_painel, text = 'Reddit', font = ('Arial', 10), fg = letter_color_box, relief='raised', background = box_color, width=15, height=1, command=reddit)
+        btn_steam = Button(links_painel, text = 'Steam', font = ('Arial', 10), fg = letter_color_box, relief='raised', background = box_color, width=15, height=1, command=steam)
+
+        btn_google.place(x = -1, y = 0)
+        btn_youtube.place(x = -1, y = 27)
+        btn_github.place(x = -1, y = 54)
+        btn_wiki.place(x = -1, y = 81)
+        btn_twitch.place(x = -1, y = 108)
+        btn_reddit.place(x = -1, y = 135)
+        btn_steam.place(x = -1, y = 162)
+
+
+    def web_links_delete():
+        links_painel.destroy()
+        btn_links.configure(command=web_links)
+        btn_main.configure(state=NORMAL)
+        btn_settings.configure(state=NORMAL)
+        btn_info.configure(state=NORMAL)
 
     #top buttons
     btn_main = Button(top_painel, text = 'H', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=2, height=1, command=calc)
-    btn_links = Button(top_painel, text = 'Web links', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=8, height=1)
+    btn_links = Button(top_painel, text = 'Web links', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=8, height=1, command=web_links)
     btn_settings = Button(top_painel, text = 'Settings', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=8, height=1, command=settings)
     btn_info = Button(top_painel, text = 'Information', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=8, height=1, command=info)
 
