@@ -77,21 +77,39 @@ def main_calc():
         theme_selected.set(theme)  
         #theme_selected.get() - get the value
 
-        def apply_theme():
+        lbl_save_log = Label(settings_painel, text = 'Save Data on a file (log.txt)', fg=letter_color, font = ('Arial', 14), background=background_color)
+        lbl_save_log.place(x = 15, y = 100)
+
+        save_to_log = StringVar()
+        Yes = Radiobutton(settings_painel, text='Yes', font = ('Arial', 13), background = background_color, variable= save_to_log, value='yes')
+        No = Radiobutton(settings_painel, text='No', font = ('Arial', 13), background = background_color, variable= save_to_log, value='no')
+        Yes.place(x = 10, y = 140)
+        No.place(x = 150, y = 140)
+        save_to_log.set(save_log)  
+        #save_to_log.get() - get the value
+
+
+        def apply_settings():
             global theme
+            global save_log
 
             with open("settings.txt", "r", encoding="UTF-8") as f:
                 newText=f.read().replace(theme, theme_selected.get())
             with open("settings.txt", "w", encoding="UTF-8") as f:
                 f.write(newText)
 
+            with open("settings.txt", "r", encoding="UTF-8") as f:
+                newText=f.read().replace(save_log, save_to_log.get())
+            with open("settings.txt", "w", encoding="UTF-8") as f:
+                f.write(newText)
+
             theme = theme_selected.get()
+            save_log = save_to_log.get()
             window.destroy()
             os.system('index.py')
 
-        btn_apply_theme = Button(settings_painel, text = 'Apply Theme', font = ('Arial', 10), fg = letter_color, relief='raised', background = background_color, command=apply_theme)
-        btn_apply_theme.place(x = 10, y = 90)
-
+        btn_apply_theme = Button(settings_painel, text = 'Apply Settings', font = ('Arial', 10), fg = letter_color, relief='raised', background = background_color, command=apply_settings)
+        btn_apply_theme.place(x = 10, y = 200)
 
 
 
