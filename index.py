@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from datetime import datetime
 from time import strftime
+import webbrowser
 import os
 
 window = Tk()  
@@ -48,6 +49,9 @@ def main_calc():
     relogio_label = Label(top_painel,font=("calibri", 17), fg = letter_color_box,background = box_color)
     relogio_label.place(x=287, y=-3)
     clock() 
+
+    def info():
+        webbrowser.open_new_tab("https://github.com/TiagoRibeiro25/age_calc")
 
     def settings():
         main_painel.destroy()
@@ -321,7 +325,7 @@ def main_calc():
     btn_main = Button(top_painel, text = 'H', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=2, height=1, command=calc)
     btn_links = Button(top_painel, text = 'Web links', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=8, height=1)
     btn_settings = Button(top_painel, text = 'Settings', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=8, height=1, command=settings)
-    btn_info = Button(top_painel, text = 'Information', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=8, height=1)
+    btn_info = Button(top_painel, text = 'Information', font = ('Arial', 10), fg = letter_color_box, relief='flat', background = box_color, width=8, height=1, command=info)
 
     btn_main.place(x = 0, y = 0)
     btn_links.place(x = 20,y = 0)
