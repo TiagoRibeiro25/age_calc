@@ -5,37 +5,39 @@ from time import strftime
 import webbrowser
 import os
 
+#load settings
+with open('settings.txt', 'r', encoding='UTF-8') as f:
+    for line in f:
+        param = line.split(" - ")
+        if param[0] == "theme":
+            global theme
+            theme = param[1]        #can only be dark or light
+        if param[0] == "log":
+            global save_log
+            save_log = param[1]
+
+if theme == "dark":
+    window_background_color = "black"
+    background_color = "LightSteelBlue4"
+    box_color = "LightSteelBlue4"
+    letter_color_box = "white"
+    letter_color = "white"
+
+if theme == "light":
+    window_background_color = "snow2"
+    background_color = "white"
+    box_color = "black"
+    letter_color_box = "white"
+    letter_color = "black"
+
 window = Tk()  
 window.geometry('400x650')
 window.resizable(0,0)
 window.iconbitmap("calc.ico")
 window.title('Program')
+window.configure(background=window_background_color)
 
 def main_calc():
-    #load settings
-    with open('settings.txt', 'r', encoding='UTF-8') as f:
-        for line in f:
-            param = line.split(" - ")
-            if param[0] == "theme":
-                global theme
-                theme = param[1]        #can only be dark or light
-
-    if theme == "dark":
-        window_background_color = "black"
-        background_color = "LightSteelBlue4"
-        box_color = "LightSteelBlue4"
-        letter_color_box = "white"
-        letter_color = "white"
-
-    elif theme == "light":
-        window_background_color = "snow2"
-        background_color = "white"
-        box_color = "black"
-        letter_color_box = "white"
-        letter_color = "black"
-
-    window.configure(background=window_background_color)
-
     #top painel
     top_painel = PanedWindow(window, width = 380, height= 29, background=box_color)
     top_painel.place(x = 10, y = 10)
@@ -89,6 +91,11 @@ def main_calc():
 
         btn_apply_theme = Button(settings_painel, text = 'Apply Theme', font = ('Arial', 10), fg = letter_color, relief='raised', background = background_color, command=apply_theme)
         btn_apply_theme.place(x = 10, y = 90)
+
+
+
+
+
 
     def calc():
         settings_painel.destroy()
@@ -250,6 +257,14 @@ def main_calc():
                         result_entry.insert('0', result)
                         result_entry.configure(state=DISABLED)
 
+                        if save_log == "yes":
+                            with open("log.txt", "r", encoding="UTF-8") as f:
+                                cont_line=f.readlines()
+                            #ID, Nome, Email, Senha, Tipo de user, Data de registo
+                            save = '\n\n' + str(datetime.today().strftime('%d-%m-%Y')) + " at " + str(strftime("%H:%M:%S")) + "\nCustom Date: " + str(custom_date_value) + "\nDay of Birth: " + str(birth_date_value) + "\nAge: " + str(result)
+                            with open("log.txt", "a", encoding="UTF-8") as f: 
+                                f.write(save)  
+
                     else:
                         messagebox.showerror(title="Warning", message="Invalid Date value!\nPlease insert a valid date.")
                         Loading_label.configure(text = 'Status: Error')
@@ -298,6 +313,15 @@ def main_calc():
                     result_entry.delete(0, END)
                     result_entry.insert('0', result)
                     result_entry.configure(state=DISABLED)
+
+                    if save_log == "yes":
+                        with open("log.txt", "r", encoding="UTF-8") as f:
+                            cont_line=f.readlines()
+                        #ID, Nome, Email, Senha, Tipo de user, Data de registo
+                        save = '\n\n' + str(datetime.today().strftime('%d-%m-%Y')) + " at " + str(strftime("%H:%M:%S")) + "\nCustom Date: " + "\nDay of Birth: " + str(birth_date_value) + "\nAge: " + str(result)
+                        with open("log.txt", "a", encoding="UTF-8") as f: 
+                            f.write(save)  
+
 
                 else:
                     messagebox.showerror(title="Warning", message="Invalid Date value!\nPlease insert a valid date.")

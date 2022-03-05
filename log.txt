@@ -1,0 +1,3 @@
+#LOG FILE
+#all age calculated will be stored in this FILE
+

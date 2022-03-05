@@ -1,4 +1,6 @@
 #CONFIG FILE
 #wrong words will lead to errors/crashs in the program
 
-theme - light
+#Change between "light" and "dark"
+theme - light - 
+log - yes - 
