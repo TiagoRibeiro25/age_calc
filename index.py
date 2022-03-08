@@ -122,7 +122,7 @@ def main_calc():
         #current date
         current_time_label = Label(main_painel, text = 'Current Date', fg=letter_color, font = ('Arial', 15), background=background_color)
         current_time_label.place(x = 125, y = 15)
-        current_time_entry = Entry(main_painel, width = 19, fg='white', font = ('Arial', 15),background="grey")
+        current_time_entry = Entry(main_painel, width = 19, fg='white', font = ('Arial', 15),background="grey", justify="center")
         current_time_entry.place(x = 80, y = 60)
         current_time_entry.insert('0', datetime.today().strftime('%d-%m-%Y'))
         current_time_entry.configure(state=DISABLED)
@@ -130,7 +130,7 @@ def main_calc():
         #custom date
         custom_time_label = Label(main_painel, text = 'Custom Date', fg=letter_color, font = ('Arial', 15), background=background_color)
         custom_time_label.place(x = 120, y = 115)
-        custom_time_entry = Entry(main_painel, width = 19, fg='white', font = ('Arial', 15),background="grey")
+        custom_time_entry = Entry(main_painel, width = 19, fg='white', font = ('Arial', 15),background="grey", justify="center")
         custom_time_entry.insert("0", "xx-yy-zzzz")
         custom_time_entry.configure(state=DISABLED)
         custom_time_entry.place(x = 80, y = 160)
@@ -149,7 +149,7 @@ def main_calc():
         #Day of birth input
         bday_date_label = Label(main_painel, text = 'Date of Birth', fg=letter_color, font = ('Arial', 15), background=background_color)
         bday_date_label.place(x = 120, y = 230)
-        bday_date_entry = Entry(main_painel, width = 19, fg='white', font = ('Arial', 15),background="grey")
+        bday_date_entry = Entry(main_painel, width = 19, fg='white', font = ('Arial', 15),background="grey", justify="center")
         bday_date_entry.place(x = 80, y = 270)
 
 
@@ -352,7 +352,7 @@ def main_calc():
 
         result_label = Label(main_painel, text = 'Calculated Age', fg=letter_color, font = ('Arial', 15), background=background_color)
         result_label.place(x = 115, y = 465)
-        result_entry = Entry(main_painel, width = 19, fg='white', font = ('Arial', 15),background="grey", state=DISABLED)
+        result_entry = Entry(main_painel, width = 19, fg='white', font = ('Arial', 15),background="grey", state=DISABLED, justify="center")
         result_entry.place(x = 80, y = 505)
 
         footer_label = Label(main_painel, text = 'App in development (Beta)                                  Open Source', fg=letter_color, font = ('Arial', 10), background=background_color)
